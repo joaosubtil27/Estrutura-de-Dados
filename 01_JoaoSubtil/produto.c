@@ -10,12 +10,11 @@ struct Produto
     float preco;
 };
 
-char *leLinha()
+char *leLinhaProduto()
 {
     char temp[100];
-    scanf("%99[^\n]", temp);
-    char *str = strdup(temp);
-    return str;
+    scanf(" %99[^\n]", temp);
+    return strdup(temp);
 }
 
 Produto *criaProduto()
@@ -23,10 +22,10 @@ Produto *criaProduto()
     Produto *p = (Produto *)malloc(sizeof(Produto));
 
     printf("\nInsira o nome do produto:\n");
-    p->nome = leLinha();
+    p->nome = leLinhaProduto();
 
     printf("\nInsira o preco do produto:\n");
-    scanf("%f\n", &p->preco);
+    scanf("%f", &p->preco);
 
     return p;
 }
@@ -38,6 +37,7 @@ Produto *buscaProduto(Produto **p, char *nome, int tam)
         if (strcmp(p[i]->nome, nome) == 0)
             return p[i];
     }
+    return NULL;
 }
 
 char *getNomeProduto(Produto *p)
@@ -50,6 +50,7 @@ float getPrecoProduto(Produto *p)
     return p->preco;
 }
 
-void liberaProduto (Produto *p){
+void liberaProduto(Produto *p)
+{
     free(p);
 }

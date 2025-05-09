@@ -13,8 +13,8 @@ Item *cadastraItem(Produto *p)
     Item *i = (Item *)malloc(sizeof(Item));
     i->prod = p;
 
-    printf("Insira a quantidade de produtos:\n");
-    scanf("%d\n", &i->qnt);
+    printf("\nInsira a quantidade de produtos:\n");
+    scanf("%d", &i->qnt);
 
     return i;
 }
@@ -26,7 +26,7 @@ float calculaValorItem(Item *i)
 }
 
 void imprimeItem(Item *i){
-    printf("                 Item: %s, valor unitário: %.2f, quantidade: %d,", getNomeProduto(i->prod), getPrecoProduto(i->prod), i->qnt);
+    printf("               Item: %s, valor unitário: %.2f, quantidade: %d\n", getNomeProduto(i->prod), getPrecoProduto(i->prod), i->qnt);
 }
 
 void liberaItem(Item *i){

@@ -23,7 +23,7 @@ Estoque *CriaEstoque()
 void adicionaItemEstoque(Estoque *e, Item *i)
 {
     e->qnt_itens++;
-    e->itens = (Item **)malloc(e->qnt_itens * sizeof(Item *));
+    e->itens = (Item **)realloc(e->itens, e->qnt_itens * sizeof(Item *));
     e->itens[e->qnt_itens - 1] = i;
 }
 
@@ -34,14 +34,22 @@ float calculaValorEstoque(Estoque *e)
     {
         e->valor += calculaValorItem(e->itens[i]);
     }
+    return e->valor;
 }
 
-void imprimeEstoque(Estoque *e){
-   printf("             Estoque: %.2f\n", calculaValorEstoque); 
+void imprimeEstoque(Estoque *e)
+{
+    printf("      Estoque: %.2f\n", calculaValorEstoque(e));
+    for (int i = 0; i < e->qnt_itens; i++)
+    {
+        imprimeItem(e->itens[i]);
+    }
 }
 
-void LiberaEstoque(Estoque *e){
-    for(int i=0; i<e->qnt_itens; i++){
+void LiberaEstoque(Estoque *e)
+{
+    for (int i = 0; i < e->qnt_itens; i++)
+    {
         liberaItem(e->itens[i]);
     }
     free(e->itens);

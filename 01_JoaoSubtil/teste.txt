@@ -1,0 +1,63 @@
+1
+Leite Integral Selita
+10
+1
+Presunto de Parma
+50
+1
+Queijo
+30
+1
+Biscoito
+5
+1
+Carne de Sol
+30
+2
+Carone
+3
+Carone
+Jardim Camburi
+3
+Carone
+Jardim da Penha
+4
+Carone
+Jardim Camburi
+Leite Integral Selita
+200
+4
+Carone
+Jardim Camburi
+Presunto de Parma
+300
+4
+Carone
+Jardim Camburi
+Queijo
+200
+4
+Carone
+Jardim da Penha
+Biscoito
+2000
+4
+Carone
+Jardim da Penha
+Presunto de Parma
+3000
+4
+Carone
+Jardim da Penha
+Carne de Sol
+50
+5
+Carone
+Jardim Camburi
+5
+Carone
+Jardim da Penha
+6
+Carone
+7
+8

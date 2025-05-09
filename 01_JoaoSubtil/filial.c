@@ -10,33 +10,46 @@ struct Filial
     Estoque *est;
 };
 
-char *leLinha()
+char *leLinhaFilial()
 {
     char temp[100];
-    scanf("%99[^\n]", temp);
-    char *str = strdup(temp);
-    return str;
+    scanf(" %99[^\n]", temp);
+    return strdup(temp);
 }
 
 Filial *CriaFilial()
 {
     Filial *f = (Filial *)malloc(sizeof(Filial));
 
-    printf("Insira o nome da filial:\n");
-    f->nome = leLinha();
+    printf("\nInsira o nome da filial:\n");
+    f->nome = leLinhaFilial();
     f->est = CriaEstoque();
 
     return f;
 }
 
-float getValorFilial(Filial *f)
+char *getNomeFilial(Filial *f)
+{
+    return f->nome;
+}
+
+Estoque *getEstoqueFilial(Filial *f){
+    return f->est;
+}
+
+float calculaValorFilial(Filial *f)
 {
     return calculaValorEstoque(f->est);
 }
 
+void AdicionaItemFilial(Filial *f, Item *i)
+{
+    adicionaItemEstoque(f->est, i);
+}
+
 void imprimeFilial(Filial *f)
 {
-    printf("             Filial: %s\n", f->nome);
+    printf("      Filial: %s\n", f->nome);
     imprimeEstoque(f->est);
 }
 

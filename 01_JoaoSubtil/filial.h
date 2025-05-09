@@ -7,7 +7,13 @@ typedef struct Filial Filial;
 
 Filial *CriaFilial();
 
-float getValorFilial(Filial *f);
+char *getNomeFilial(Filial *f);
+
+Estoque *getEstoqueFilial(Filial *f);
+
+float calculaValorFilial(Filial *f);
+
+void AdicionaItemFilial(Filial *f, Item *i);
 
 void imprimeFilial(Filial *f);
 
