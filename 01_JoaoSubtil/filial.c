@@ -17,7 +17,7 @@ char *leLinhaFilial()
     return strdup(temp);
 }
 
-Filial *CriaFilial()
+Filial *CriaFilial() // cria um filial
 {
     Filial *f = (Filial *)malloc(sizeof(Filial));
 
@@ -28,32 +28,33 @@ Filial *CriaFilial()
     return f;
 }
 
-char *getNomeFilial(Filial *f)
+char *getNomeFilial(Filial *f) // retorna o nome da filial
 {
     return f->nome;
 }
 
-Estoque *getEstoqueFilial(Filial *f){
+Estoque *getEstoqueFilial(Filial *f) // retorna o estoque da filial
+{
     return f->est;
 }
 
-float calculaValorFilial(Filial *f)
+float calculaValorFilial(Filial *f) // calcula valor da filial
 {
     return calculaValorEstoque(f->est);
 }
 
-void AdicionaItemFilial(Filial *f, Item *i)
+void AdicionaItemFilial(Filial *f, Item *i) // adiciona um produto ao estoque de uma filial
 {
     adicionaItemEstoque(f->est, i);
 }
 
-void imprimeFilial(Filial *f)
+void imprimeFilial(Filial *f) // imprime as informacoes da filial e dos itens no estoque
 {
     printf("      Filial: %s\n", f->nome);
     imprimeEstoque(f->est);
 }
 
-void liberaFilial(Filial *f)
+void liberaFilial(Filial *f) // libera a memoria de uma filial
 {
     LiberaEstoque(f->est);
     free(f);

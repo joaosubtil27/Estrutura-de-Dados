@@ -11,24 +11,14 @@ char *leLinha()
     return strdup(temp);
 }
 
-Supermercado *buscaSupermercado(Supermercado **s, char *nome, int tam)
-{
-    for (int i = 0; i < tam; i++)
-    {
-        if (strcmp(getNomeSupermercado(s[i]), nome) == 0)
-            return s[i];
-    }
-    return NULL;
-}
-
 int main()
 {
     int op;
 
-    Produto **prod = (Produto **)malloc(sizeof(Produto *));
+    Produto **prod = (Produto **)malloc(sizeof(Produto *)); // criacao de um vetor de ponteiros para produtos pré-castrados
     int qnt_prod = 0;
 
-    Supermercado **sup = (Supermercado **)malloc(sizeof(Supermercado *));
+    Supermercado **sup = (Supermercado **)malloc(sizeof(Supermercado *)); // criacao de um vetor de ponteiros para supermercados
     int qnt_sup = 0;
 
     while (1)
@@ -45,28 +35,28 @@ int main()
 
         scanf("%d", &op);
 
-        if (op == 1)
+        if (op == 1) // pré-cadastramento de um produto
         {
             qnt_prod++;
             prod = (Produto **)realloc(prod, qnt_prod * sizeof(Produto *));
 
             prod[qnt_prod - 1] = criaProduto();
         }
-        else if (op == 2)
+        else if (op == 2) // cadastramento de um supermercado no sistema
         {
             qnt_sup++;
 
             sup = (Supermercado **)realloc(sup, qnt_sup * sizeof(Supermercado *));
             sup[qnt_sup - 1] = CriaSupermercado();
         }
-        else if (op == 3)
+        else if (op == 3) // adiciona filial a um supermercado
         {
 
             printf("\nInsira o nome do Supermercado:\n");
             char *nome_sup = leLinha();
             adicionaFilialSupermercado(buscaSupermercado(sup, nome_sup, qnt_sup));
         }
-        else if (op == 4)
+        else if (op == 4) // regista um item pré-cadastrado no sistema de uma filial do supermercado
         {
             printf("\nInsira o nome do Supermercado:\n");
             char *nome_sup = leLinha();
@@ -80,7 +70,7 @@ int main()
             Filial *f = buscaFilial(buscaSupermercado(sup, nome_sup, qnt_sup), nome_fil);
             AdicionaItemFilial(f, i);
         }
-        else if (op == 5)
+        else if (op == 5) // Calcula valor da filial
         {
             printf("\nInsira o nome do Supermercado:\n");
             char *nome_sup = leLinha();
@@ -90,7 +80,7 @@ int main()
 
             printf("\nValor da filial: %.2f\n", calculaValorFilial(buscaFilial(buscaSupermercado(sup, nome_sup, qnt_sup), nome_fil)));
         }
-        else if (op == 6)
+        else if (op == 6) // Calcula o valor do supermercado
         {
             printf("\nInsira o nome do Supermercado:\n");
             char *nome_sup = leLinha();
@@ -100,7 +90,7 @@ int main()
 
             printf("\nValor do supermercado: %.2f\n", getValorSupermercado(s));
         }
-        else if (op == 7)
+        else if (op == 7) // Imprime relatorio geral dos supermercados
         {
             printf("\n--------------------------------\n");
             for (int i = 0; i < qnt_sup; i++)
@@ -109,17 +99,24 @@ int main()
                 printf("--------------------------------\n");
             }
         }
-        else if (op == 8)
+        else if (op == 8) // fim do programa
         {
             break;
         }
-        else
+        else // condicao para valores invalidos (x<1 && x>8)
         {
             printf("\nValor invalido!\n");
         }
     }
-    for(int i=0; i<qnt_sup; i++){
+    for (int i = 0; i < qnt_sup; i++)
+    { // liberacao da memoria dinamica alocada do supermercado
         liberaSupermercado(sup[i]);
     }
     free(sup);
+
+    for (int i = 0; i < qnt_prod; i++)
+    { // liberacao da memoria dinamica alocada dos produtos pré-cadastrados
+        liberaProduto(prod[i]);
+    }
+    free(prod);
 }

@@ -10,7 +10,7 @@ struct Estoque
     int qnt_itens;
 };
 
-Estoque *CriaEstoque()
+Estoque *CriaEstoque() // cria um estoque e inicializa suas variaveis
 {
     Estoque *e = (Estoque *)malloc(sizeof(Estoque));
 
@@ -20,14 +20,14 @@ Estoque *CriaEstoque()
     return e;
 }
 
-void adicionaItemEstoque(Estoque *e, Item *i)
+void adicionaItemEstoque(Estoque *e, Item *i) // adiciona um item em um vetor no estoque
 {
     e->qnt_itens++;
     e->itens = (Item **)realloc(e->itens, e->qnt_itens * sizeof(Item *));
     e->itens[e->qnt_itens - 1] = i;
 }
 
-float calculaValorEstoque(Estoque *e)
+float calculaValorEstoque(Estoque *e) // calcula o valor do estoque
 {
     e->valor = 0;
     for (int i = 0; i < e->qnt_itens; i++)
@@ -37,7 +37,7 @@ float calculaValorEstoque(Estoque *e)
     return e->valor;
 }
 
-void imprimeEstoque(Estoque *e)
+void imprimeEstoque(Estoque *e) // imprime o valor de estoque e as informacoes dos itens cadastrados
 {
     printf("      Estoque: %.2f\n", calculaValorEstoque(e));
     for (int i = 0; i < e->qnt_itens; i++)
@@ -46,7 +46,7 @@ void imprimeEstoque(Estoque *e)
     }
 }
 
-void LiberaEstoque(Estoque *e)
+void LiberaEstoque(Estoque *e) // libera a menoria de um estoque
 {
     for (int i = 0; i < e->qnt_itens; i++)
     {

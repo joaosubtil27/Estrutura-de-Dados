@@ -9,13 +9,15 @@ Supermercado *CriaSupermercado();
 
 void adicionaFilialSupermercado(Supermercado *s);
 
-Filial *buscaFilial(Supermercado *s, char* nome);
+Filial *buscaFilial(Supermercado *s, char *nome);
 
 char *getNomeSupermercado(Supermercado *s);
 
 float getValorSupermercado(Supermercado *s);
 
 void calculaValorSupermercado(Supermercado *s);
+
+Supermercado *buscaSupermercado(Supermercado **s, char *nome, int tam);
 
 void imprimeSupermercado(Supermercado *s);
 

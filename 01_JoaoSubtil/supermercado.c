@@ -12,7 +12,6 @@ struct Supermercado
     int qnt_filiais;
 };
 
-
 char *leLinhaSupermercado()
 {
     char temp[100];
@@ -20,8 +19,7 @@ char *leLinhaSupermercado()
     return strdup(temp);
 }
 
-
-Supermercado *CriaSupermercado()
+Supermercado *CriaSupermercado() // funcao que aloca um supermercado e inicializa suas variaveis
 {
     Supermercado *s = (Supermercado *)malloc(sizeof(Supermercado));
     printf("\nInsira o nome do supermercado:\n");
@@ -32,7 +30,7 @@ Supermercado *CriaSupermercado()
     return s;
 }
 
-void adicionaFilialSupermercado(Supermercado *s)
+void adicionaFilialSupermercado(Supermercado *s) // adiciona uma filial no vetor de filiais do supermercado
 {
     s->qnt_filiais++;
 
@@ -40,7 +38,7 @@ void adicionaFilialSupermercado(Supermercado *s)
     s->filiais[s->qnt_filiais - 1] = CriaFilial();
 }
 
-Filial *buscaFilial(Supermercado *s, char *nome)
+Filial *buscaFilial(Supermercado *s, char *nome) // busca por uma filial no vetor
 {
     for (int i = 0; i < s->qnt_filiais; i++)
     {
@@ -50,17 +48,17 @@ Filial *buscaFilial(Supermercado *s, char *nome)
     return NULL;
 }
 
-char *getNomeSupermercado(Supermercado *s)
+char *getNomeSupermercado(Supermercado *s) // retorna nome do supermercado
 {
     return s->nome;
 }
 
-float getValorSupermercado(Supermercado *s)
+float getValorSupermercado(Supermercado *s) // retorna o valor do supermercado
 {
     return s->est_total;
 }
 
-void calculaValorSupermercado(Supermercado *s)
+void calculaValorSupermercado(Supermercado *s) // calcula o valor do supermercado
 {
     s->est_total = 0;
 
@@ -70,16 +68,28 @@ void calculaValorSupermercado(Supermercado *s)
     }
 }
 
-void imprimeSupermercado(Supermercado *s)
-{   calculaValorSupermercado(s);
+Supermercado *buscaSupermercado(Supermercado **s, char *nome, int tam) // busca um supermercado num vetor
+{
+    for (int i = 0; i < tam; i++)
+    {
+        if (strcmp(getNomeSupermercado(s[i]), nome) == 0)
+            return s[i];
+    }
+    return NULL;
+}
+
+void imprimeSupermercado(Supermercado *s) // imprime as informacoes sobre o supermercado, filiais e os produtos cadastrados em cada uma
+{
+    calculaValorSupermercado(s);
     printf("\nNome: %s, Estoque Total: %.2f\n\n", s->nome, s->est_total);
-    for(int i=0; i<s->qnt_filiais; i++){
+    for (int i = 0; i < s->qnt_filiais; i++)
+    {
         imprimeFilial(s->filiais[i]);
         printf("\n");
     }
 }
 
-void liberaSupermercado(Supermercado *s)
+void liberaSupermercado(Supermercado *s) // libera a memoria alocada por um supermercado
 {
     for (int i = 0; i < s->qnt_filiais; i++)
     {

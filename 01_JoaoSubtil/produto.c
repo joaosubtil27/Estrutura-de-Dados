@@ -17,7 +17,7 @@ char *leLinhaProduto()
     return strdup(temp);
 }
 
-Produto *criaProduto()
+Produto *criaProduto() // cria um produto e le os valores das variaveis relacionadas na entrada padrao
 {
     Produto *p = (Produto *)malloc(sizeof(Produto));
 
@@ -30,7 +30,7 @@ Produto *criaProduto()
     return p;
 }
 
-Produto *buscaProduto(Produto **p, char *nome, int tam)
+Produto *buscaProduto(Produto **p, char *nome, int tam) // busca um produto num vetor
 {
     for (int i = 0; i < tam; i++)
     {
@@ -40,17 +40,17 @@ Produto *buscaProduto(Produto **p, char *nome, int tam)
     return NULL;
 }
 
-char *getNomeProduto(Produto *p)
+char *getNomeProduto(Produto *p) // retorna o nome do produto
 {
     return p->nome;
 }
 
-float getPrecoProduto(Produto *p)
+float getPrecoProduto(Produto *p) // retorna o preco do produto
 {
     return p->preco;
 }
 
-void liberaProduto(Produto *p)
+void liberaProduto(Produto *p) // libera a memoria alocada por um produto
 {
     free(p);
 }
