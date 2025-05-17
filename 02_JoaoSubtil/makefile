@@ -1,4 +1,4 @@
-all: debug_compile clean debug_run
+all: debug_compile debug_run
 
 compile:
 	gcc *.c -c
